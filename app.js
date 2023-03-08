@@ -18,8 +18,9 @@ app.post('/kahoot', urlencodedParser, async (req, res) => {
 	if (req.body.kahoot) {
 		const response = await fetch('https://play.kahoot.it/rest/kahoots/' + req.body.kahoot);
 		const data = await response.json();
-		console.log(data);
-		res.send(data);
+		const questions = data.questions[1];
+		console.log(questions);
+		res.send(questions.choices);
 	}
 })
 
