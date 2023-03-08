@@ -2,6 +2,11 @@ const express = require('express');
 const app = express();
 const session = require('express-session');
 const ejs = require('ejs')
+const fetch = require('node-fetch');
+const bodyParser = require('body-parser');
+
+var urlencodedParser = bodyParser.urlencoded({ extended: false })
+app.use(express.urlencoded({ extended: true }));
 
 PORT = 1000
 
@@ -9,8 +14,13 @@ app.get('/', (req, res) => {
 	res.render('kahoot');
 })
 
-app.post('/', (req, res) => {
-
+app.post('/kahoot', urlencodedParser, async (req, res) => {
+	if (req.body.kahoot) {
+		const response = await fetch('https://play.kahoot.it/rest/kahoots/' + req.body.kahoot);
+		const data = await response.json();
+		console.log(data);
+		res.send(data);
+	}
 })
 
 app.set('view engine', 'ejs');
