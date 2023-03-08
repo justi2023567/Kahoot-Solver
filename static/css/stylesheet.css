@@ -1,0 +1,11 @@
+body {
+   background-color: aquamarine;
+   text-align: center;
+   position: relative; top: 0px;
+   zoom: 3;
+}
+
+h1 {
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  zoom: 2;
+}
