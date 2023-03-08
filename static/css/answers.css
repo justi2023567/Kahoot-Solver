@@ -1,0 +1,16 @@
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  margin-bottom: 10px;
+}
+
+body {
+  background-color: aquamarine;
+  text-align: center;
+  position: relative; top: 0px;
+  zoom: 1;
+}
