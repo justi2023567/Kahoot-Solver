@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-    <title>Answers</title>
+    <title>Questions</title>
     <link rel="stylesheet" href="css/answers.css">
 </head>
-
 <body>
-    <h1>Answers:</h1>
-    <ul>
-        <% for (const [index, answer] of answers.entries()) { %>
-            <li>Question <%= index + 1 %>: <%= answer %>
-            </li>
-            <% } %>
-    </ul>
+    <% questions.forEach((question, index) => { %>
+        <h2>Question <%= index + 1 %>:</h2>
+        <p><%= question.question %></p>
+        <ul>
+          <% question.choices.forEach(choice => { %>
+            <li><%= choice.answer %></li>
+          <% }) %>
+        </ul>
+        <p><strong>Correct answer(s):</strong> <%= question.correctAnswers.join(', ') %></p>
+      <% }) %>
 </body>
-
 </html>

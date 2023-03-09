@@ -20,14 +20,15 @@ app.post('/kahoot', urlencodedParser, async (req, res) => {
         if (req.body.kahoot) {
             const response = await fetch('https://play.kahoot.it/rest/kahoots/' + req.body.kahoot);
             const data = await response.json();
-            const choices = data.questions.map(q => q.choices).reduce((acc, c) => acc.concat(c), []);
-            const answers = [];
-            for (const choice of choices) {
-                if (choice && choice.correct) {
-                    answers.push(choice.answer);
+            const questions = data.questions.map(q => {
+                const choices = q.choices || []; 
+                return {
+                    question: q.question,
+                    choices: choices,
+                    correctAnswers: choices.filter(c => c.correct).map(c => c.answer)
                 }
-            }
-            res.render('answers', { answers });
+            });
+            res.render('answers', { questions });
         }
     } catch (err) {
         console.error(err);
